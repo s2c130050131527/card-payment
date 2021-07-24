@@ -1,20 +1,21 @@
-import { useContext, useState } from "react";
-import { PayNowAmountContext } from "../context";
 import styles from "./Repayment.module.scss";
 import RepaymentOption from "./RepaymentOption";
 
-const MONTHS = [3, 6, 9];
-
-const Repayment = () => {
-  const { payNowAmount } = useContext(PayNowAmountContext);
-  const [selectedMonth, setSelectedMonth] = useState(MONTHS[0]);
+const Repayment = ({
+  payNowAmount,
+  amount,
+  monthList,
+  selectedMonth,
+  setSelectedMonth,
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>Repayment option</div>
       <div className={styles.optionsContainer}>
-        {MONTHS.map((el) => (
+        {monthList.map((el) => (
           <RepaymentOption
             monthQty={el}
+            amount={amount}
             key={el}
             amt={payNowAmount}
             selected={selectedMonth === el}

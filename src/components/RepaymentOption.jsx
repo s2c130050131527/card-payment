@@ -1,5 +1,4 @@
-import { useContext, useMemo } from "react";
-import { TotalAmountContext } from "../context";
+import { useMemo } from "react";
 import styles from "./RepaymentOption.module.scss";
 
 const INT_LIST = {
@@ -8,9 +7,7 @@ const INT_LIST = {
   9: 1.08,
 };
 
-const RepaymentOption = ({ monthQty, amt, selected, onChange }) => {
-  const { amount } = useContext(TotalAmountContext);
-
+const RepaymentOption = ({ monthQty, amt, selected, onChange, amount }) => {
   const amtDisp = useMemo(() => {
     return parseFloat(((amount - amt) * INT_LIST[monthQty]) / monthQty).toFixed(
       2

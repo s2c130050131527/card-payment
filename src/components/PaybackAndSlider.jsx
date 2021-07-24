@@ -1,12 +1,8 @@
-import { useContext, useMemo } from "react";
-import { PayNowAmountContext, TotalAmountContext } from "../context";
 import styles from "./PaybackAndSlider.module.scss";
 import { Range } from "react-range";
+import { useMemo } from "react";
 
-const PaybackAndSlider = () => {
-  const { amount } = useContext(TotalAmountContext);
-  const { payNowAmount, setPayNowAmount } = useContext(PayNowAmountContext);
-
+const PaybackAndSlider = ({ amount, payNowAmount, setPayNowAmount }) => {
   const percentAmt = useMemo(() => {
     return parseInt((payNowAmount / amount) * 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps

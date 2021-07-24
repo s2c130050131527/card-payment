@@ -4,35 +4,37 @@ import GraphContainer from "./components/GraphContainer";
 import PaybackAndSlider from "./components/PaybackAndSlider";
 import Repayment from "./components/Repayment";
 import TitleCard from "./components/TitleCard";
-import { PayNowAmountContext, TotalAmountContext } from "./context";
+
+const amount = 10500;
+const MONTHS = [3, 6, 9];
 
 function App() {
-  const [amount, setAmount] = useState(10500);
   const [payNowAmount, setPayNowAmount] = useState([3000]);
+  const [selectedMonth, setSelectedMonth] = useState(MONTHS[0]);
 
   return (
-    <TotalAmountContext.Provider
-      value={{
-        amount,
-        setAmount,
-      }}
-    >
-      <PayNowAmountContext.Provider
-        value={{
-          payNowAmount,
-          setPayNowAmount,
-        }}
-      >
-        <div className={styles.container}>
-          <div className={styles.body}>
-            <TitleCard />
-            <GraphContainer />
-            <PaybackAndSlider />
-            <Repayment />
-          </div>
-        </div>
-      </PayNowAmountContext.Provider>
-    </TotalAmountContext.Provider>
+    <div className={styles.container}>
+      <div className={styles.body}>
+        <TitleCard />
+        <GraphContainer
+          amount={amount}
+          payNowAmount={payNowAmount}
+          selectedMonth={selectedMonth}
+        />
+        <PaybackAndSlider
+          payNowAmount={payNowAmount}
+          setPayNowAmount={setPayNowAmount}
+          amount={amount}
+        />
+        <Repayment
+          payNowAmount={payNowAmount}
+          amount={amount}
+          monthList={MONTHS}
+          selectedMonth={selectedMonth}
+          setSelectedMonth={setSelectedMonth}
+        />
+      </div>
+    </div>
   );
 }
 
