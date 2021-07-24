@@ -10,5 +10,15 @@
   .boxOfGraph {
     padding-top: 14px;
     height: 140px;
+    position: relative;
+    .intDisplay {
+      position: absolute;
+      right: 5%;
+      top: 3%;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.4px;
+      color: rgb(239, 105, 90);
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Chart from "./Chart";
 import styles from "./GraphContainer.module.scss";
 
@@ -23,14 +23,15 @@ const GraphContainer = ({ amount, payNowAmount, selectedMonth }) => {
 
   useEffect(() => {
     let resizedFn;
-    window.addEventListener("resize", () => {
+    const listener = () => {
       clearTimeout(resizedFn);
       resizedFn = setTimeout(() => {
         setDimens();
       }, 200);
-    });
+    };
+    window.addEventListener("resize", listener);
     return () => {
-      window.removeEventListener("resize");
+      window.removeEventListener("resize", listener);
     };
   }, []);
 
@@ -49,6 +50,7 @@ const GraphContainer = ({ amount, payNowAmount, selectedMonth }) => {
     <div className={styles.container}>
       <div className={styles.title}>Total Finance Charge</div>
       <div className={styles.boxOfGraph} ref={parentRef}>
+        <div className={styles.intDisplay}>$ {interest}</div>
         <Chart
           y={interest}
           x={selectedMonth}
