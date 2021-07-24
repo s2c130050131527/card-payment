@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { PayNowAmountContext, TotalAmountContext } from "../context";
+import { PayNowAmountContext } from "../context";
 import styles from "./Repayment.module.scss";
 import RepaymentOption from "./RepaymentOption";
 

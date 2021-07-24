@@ -18,7 +18,10 @@ const RepaymentOption = ({ monthQty, amt, selected, onChange }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monthQty, amt]);
   return (
-    <div className={styles.container} onClick={() => onChange(monthQty)}>
+    <div
+      className={`${styles.container} ${selected ? styles.selected : ""}`}
+      onClick={() => onChange(monthQty)}
+    >
       <div className={styles.innerBtn} role="button" tabIndex="0">
         <div className={styles.monthTitle}>
           <span className={styles.monthQty}>{monthQty}</span>

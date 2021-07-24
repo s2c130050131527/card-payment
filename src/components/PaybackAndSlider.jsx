@@ -1,4 +1,4 @@
-import { useCallback, useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { PayNowAmountContext, TotalAmountContext } from "../context";
 import styles from "./PaybackAndSlider.module.scss";
 import { Range } from "react-range";
