@@ -1,0 +1,36 @@
+.container {
+  padding: 20px;
+  border-bottom: 1px solid #d8d8d8;
+  .amounts {
+    display: flex;
+    padding: 15px 0;
+    .title {
+      font-size: 15px;
+      font-weight: 500;
+      color: #6e6e6e;
+      line-height: 21px;
+    }
+    .amount {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.4pt;
+      color: #2c2c2c;
+      line-height: 21px;
+    }
+    .payNow {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: center;
+    }
+    .payLater {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: center;
+    }
+  }
+  .slider {
+    width: 100%;
+  }
+}
