@@ -1,36 +1,67 @@
-import { useRef } from "react";
 import * as d3 from "d3";
 
-const margin = { top: 0, right: 0, bottom: 20, left: 20 },
-  width = 364 - margin.left - margin.right,
-  height = 124 - margin.top - margin.bottom,
-  color = "OrangeRed";
+const Chart = ({ x, y, widthX, heightY }) => {
+  const margin = { top: 0, right: 10, bottom: 10, left: 0 };
+  const width = widthX - margin.left - margin.right;
+  const height = heightY - margin.top - margin.bottom;
 
-const Chart = ({ x, y }) => {
-  const getX = d3.scaleLinear().domain([0, x]).range([0, width]);
-  const getY = d3.scaleLinear().domain([y, 0]).range([height, 0]);
+  let data = [{ mon: 0, amt: 0 }];
+  let total = (x * (x + 1)) / 2;
+  let yderivate = y / total;
+  for (let i = 1; i <= x; i++) {
+    let newObj = {
+      mon: i,
+      amt: yderivate * i + data[i - 1].amt,
+    };
+    data.push(newObj);
+  }
 
-  const getXAxis = (ref) => {
-    const xAxis = d3.axisBottom(getX);
-    d3.select(ref).call(xAxis);
-  };
+  const getX = d3.scaleLinear().domain([0, x]).range([10, width]);
+  const getY = d3.scaleLinear().domain([0, y]).range([height, 5]);
 
-  const getYAxis = (ref) => {
-    const yAxis = d3.axisLeft(getY).tickSize(0).tickPadding(7);
-    d3.select(ref).call(yAxis);
-  };
+  const linePath = d3
+    .line()
+    .x((d) => getX(d.mon))
+    .y((d) => getY(d.amt))
+    .curve(d3.curveMonotoneX)(data);
+
+  const areaPath = d3
+    .area()
+    .x((d) => getX(d.mon))
+    .y0((d) => getY(d.amt))
+    .y1(() => getY(0))
+    .curve(d3.curveMonotoneX)(data);
 
   return (
     <svg
       viewBox={`0 0 ${width + margin.left + margin.right} 
   ${height + margin.top + margin.bottom}`}
     >
-      <g className="axis" ref={getYAxis} />
-      <g
-        className="axis xAxis"
-        ref={getXAxis}
-        transform={`translate(0,${height})`}
+      <path
+        strokeWidth={5}
+        fill="none"
+        stroke="url(#linear)"
+        d={linePath}
+        strokeLinecap="round"
       />
+      <path fill="url(#linear2)" d={areaPath} opacity={0.3} />
+
+      <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#edb42d" />
+        <stop offset="45%" stopColor="#edb42d" />
+        <stop offset="100%" stopColor="#f06060" />
+      </linearGradient>
+      <linearGradient
+        id="linear2"
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="0%"
+        gradientTransform="rotate(90)"
+      >
+        <stop offset="50%" stopColor="#f06060" />
+        <stop offset="100%" stopColor="#edb42d00" />
+      </linearGradient>
     </svg>
   );
 };

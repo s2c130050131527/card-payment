@@ -25,7 +25,7 @@ const PaybackAndSlider = ({ amount, payNowAmount, setPayNowAmount }) => {
           values={payNowAmount}
           step={100}
           min={0}
-          max={amount}
+          max={amount - 100}
           rtl={false}
           onChange={(values) => setPayNowAmount(values)}
           renderTrack={({ props, children }) => (
