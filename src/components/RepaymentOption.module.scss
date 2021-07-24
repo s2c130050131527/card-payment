@@ -1,0 +1,40 @@
+.container {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 102px;
+  height: 76px;
+  padding: 6px 3px;
+  cursor: pointer;
+  .innerBtn {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 8px;
+    .monthTitle {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgb(110, 110, 110);
+      line-height: 16px;
+      letter-spacing: -0.4px;
+
+      .monthQty {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 36px;
+        letter-spacing: 0;
+      }
+    }
+    .amountDisp {
+      .amtBold {
+        font-weight: 600;
+      }
+      font-size: 13px;
+      line-height: 24px;
+      letter-spacing: -0.4pt;
+      color: rgb(110, 110, 110);
+    }
+  }
+}

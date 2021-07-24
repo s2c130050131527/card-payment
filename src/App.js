@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./App.module.scss";
 import GraphContainer from "./components/GraphContainer";
 import PaybackAndSlider from "./components/PaybackAndSlider";
+import Repayment from "./components/Repayment";
 import TitleCard from "./components/TitleCard";
 import { PayNowAmountContext, TotalAmountContext } from "./context";
 
@@ -27,6 +28,7 @@ function App() {
             <TitleCard />
             <GraphContainer />
             <PaybackAndSlider />
+            <Repayment />
           </div>
         </div>
       </PayNowAmountContext.Provider>

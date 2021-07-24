@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { PayNowAmountContext, TotalAmountContext } from "../context";
 import styles from "./PaybackAndSlider.module.scss";
 import { Range } from "react-range";
@@ -6,6 +6,11 @@ import { Range } from "react-range";
 const PaybackAndSlider = () => {
   const { amount } = useContext(TotalAmountContext);
   const { payNowAmount, setPayNowAmount } = useContext(PayNowAmountContext);
+
+  const percentAmt = useMemo(() => {
+    return parseInt((payNowAmount / amount) * 100);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [payNowAmount]);
 
   return (
     <div className={styles.container}>
@@ -22,7 +27,7 @@ const PaybackAndSlider = () => {
       <div className={styles.slider}>
         <Range
           values={payNowAmount}
-          step={1}
+          step={100}
           min={0}
           max={amount}
           rtl={false}
@@ -44,11 +49,7 @@ const PaybackAndSlider = () => {
                   height: "20px",
                   width: "100%",
                   borderRadius: "10px",
-                  background: `linear-gradient(90deg, rgba(240,96,96,1) 0%, rgba(237,179,45,1) ${parseInt(
-                    (payNowAmount / amount) * 100
-                  )}%, rgba(246,246,246,1) ${parseInt(
-                    (payNowAmount / amount) * 100
-                  )}%)`,
+                  background: `linear-gradient(90deg, rgba(240,96,96,1) 0%, rgba(237,179,45,1) ${percentAmt}%, rgba(246,246,246,1) ${percentAmt}%)`,
                   alignSelf: "center",
                 }}
               >
@@ -83,6 +84,10 @@ const PaybackAndSlider = () => {
             </div>
           )}
         />
+        <div className={styles.rangeAmt}>
+          <div className={styles.minAmt}>$ 0.00</div>
+          <div className={styles.maxAmt}>$ {parseFloat(amount).toFixed(2)}</div>
+        </div>
       </div>
     </div>
   );

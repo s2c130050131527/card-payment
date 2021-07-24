@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  .title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #6e6e6e;
+    line-height: 21px;
+  }
+  .paragraph {
+    font-size: 12px;
+    font-weight: 500;
+    color: #6e6e6e;
+    p {
+      line-height: 16px;
+    }
+  }
+  .optionsContainer {
+    display: flex;
+    padding: 12px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .continue {
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+    .continueBtn {
+      width: 70%;
+      height: 45px;
+      outline: none;
+      border: none;
+      background: rgb(53, 153, 222);
+      border-radius: 7px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+}
