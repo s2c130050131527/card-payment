@@ -23,13 +23,13 @@ const Repayment = ({
           />
         ))}
       </div>
-      <div className={styles.paragraph}>
+      {/* <div className={styles.paragraph}>
         <p>
           This amount includes a Monthly Installment Fee of $18.75 for a Total
           Installment Fee of $168.75.
         </p>
         <p>With monthly AutoPay Savings of $5.00</p>
-      </div>
+      </div> */}
       <div className={styles.continue}>
         <button className={styles.continueBtn}>Continue</button>
       </div>
