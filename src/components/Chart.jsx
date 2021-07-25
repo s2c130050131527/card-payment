@@ -1,5 +1,4 @@
 import * as d3 from "d3";
-import styles from "./Chart.module.scss";
 
 const Chart = ({ x, y, widthX, heightY }) => {
   const margin = { top: 0, right: 10, bottom: 10, left: 0 };
