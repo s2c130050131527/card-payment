@@ -1,7 +1,8 @@
 import * as d3 from "d3";
+import styles from "./Chart.module.scss";
 
 const Chart = ({ x, y, widthX, heightY }) => {
-  const margin = { top: 0, right: 10, bottom: 10, left: 0 };
+  const margin = { top: 0, right: 55, bottom: 10, left: 0 };
   const width = widthX - margin.left - margin.right;
   const height = heightY - margin.top - margin.bottom;
 
@@ -17,7 +18,23 @@ const Chart = ({ x, y, widthX, heightY }) => {
   }
 
   const getX = d3.scaleLinear().domain([0, x]).range([10, width]);
-  const getY = d3.scaleLinear().domain([0, y]).range([height, 5]);
+  const getY = d3.scaleLinear().domain([0, 900]).range([height, 5]);
+
+  const getYAxis = (ref) => {
+    const ticksList = [
+      0.0, 100.0, 200.0, 300.0, 400.0, 500.0, 600.0, 700.0, 800.0, 900.0,
+    ];
+    const yAxis = d3
+      .axisRight(getY)
+      .tickValues(ticksList)
+      .tickSize(0)
+      .tickFormat((d) => {
+        console.log(d);
+        return `$ ${parseFloat(d).toFixed(2)}`;
+      })
+      .tickPadding(7);
+    d3.select(ref).call(yAxis);
+  };
 
   const linePath = d3
     .line()
@@ -37,6 +54,20 @@ const Chart = ({ x, y, widthX, heightY }) => {
       viewBox={`0 0 ${width + margin.left + margin.right} 
   ${height + margin.top + margin.bottom}`}
     >
+      <g
+        ref={getYAxis}
+        transform={`translate(${width},0)`}
+        className={styles.axisY}
+      />
+      <g
+        transform={`translate(${width - 70},${
+          parseFloat(y) < 100 ? getY(y) - 10 : getY(y)
+        })`}
+      >
+        <text fontSize="15px" fontWeight="bold" fill="#f06060">
+          $ {y}
+        </text>
+      </g>
       <path
         strokeWidth={5}
         fill="none"

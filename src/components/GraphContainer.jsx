@@ -50,7 +50,7 @@ const GraphContainer = ({ amount, payNowAmount, selectedMonth }) => {
     <div className={styles.container}>
       <div className={styles.title}>Total Finance Charge</div>
       <div className={styles.boxOfGraph} ref={parentRef}>
-        <div className={styles.intDisplay}>$ {interest}</div>
+        {/* <div className={styles.intDisplay}>$ {interest}</div> */}
         <Chart
           y={interest}
           x={selectedMonth}
