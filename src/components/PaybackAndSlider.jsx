@@ -8,6 +8,25 @@ const PaybackAndSlider = ({ amount, payNowAmount, setPayNowAmount }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [payNowAmount]);
 
+  const gradientFn = () => {
+    if (percentAmt <= 50) {
+      return `linear-gradient(90deg, rgba(240,96,96,1) 0%, rgba(237,179,45,1) ${percentAmt}%, rgba(246,246,246,1) ${percentAmt}%)`;
+    }
+    return `linear-gradient(90deg, rgba(240,96,96,1) 0%,rgba(237,180,45,1) 50%, #75bb74 ${
+      percentAmt < 60 ? percentAmt : 60
+    }%,#75bb74 ${percentAmt}%, rgba(246,246,246,1) ${percentAmt}%)`;
+  };
+
+  const colorRange = () => {
+    if (percentAmt < 33) {
+      return `rgba(240,96,96,1)`;
+    }
+    if (percentAmt < 56) {
+      return `rgba(237,180,45,1)`;
+    }
+    return "#75bb74";
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.amounts}>
@@ -45,7 +64,7 @@ const PaybackAndSlider = ({ amount, payNowAmount, setPayNowAmount }) => {
                   height: "20px",
                   width: "100%",
                   borderRadius: "10px",
-                  background: `linear-gradient(90deg, rgba(240,96,96,1) 0%, rgba(237,180,45,1) 50%, rgba(117,187,116,1) 100%)`,
+                  background: gradientFn(),
                   alignSelf: "center",
                 }}
               >
@@ -74,7 +93,7 @@ const PaybackAndSlider = ({ amount, payNowAmount, setPayNowAmount }) => {
                   height: "16px",
                   width: "16px",
                   borderRadius: "8px",
-                  backgroundColor: "rgb(231,164,50)",
+                  backgroundColor: colorRange(),
                 }}
               />
             </div>
