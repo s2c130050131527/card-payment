@@ -45,7 +45,7 @@ const PaybackAndSlider = ({ amount, payNowAmount, setPayNowAmount }) => {
                   height: "20px",
                   width: "100%",
                   borderRadius: "10px",
-                  background: `linear-gradient(90deg, rgba(240,96,96,1) 0%, rgba(237,179,45,1) ${percentAmt}%, rgba(246,246,246,1) ${percentAmt}%)`,
+                  background: `linear-gradient(90deg, rgba(240,96,96,1) 0%, rgba(237,180,45,1) 50%, rgba(117,187,116,1) 100%)`,
                   alignSelf: "center",
                 }}
               >
